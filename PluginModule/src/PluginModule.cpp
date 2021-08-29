@@ -20,22 +20,22 @@ CPluginModule::~CPluginModule(void)
 {
 	// 析构函数再释放资源
 }
-std::string CPluginModule::GetName() const
+const char* CPluginModule::GetName() const
 {
 	return "";
 }
 
-std::string CPluginModule::GetCompany() const
+const char* CPluginModule::GetCompany() const
 {
 	return "";
 }
 
-std::string CPluginModule::GetVersion() const
+const char* CPluginModule::GetVersion() const
 {
 	return "";
 }
 
-std::string CPluginModule::GetDescription() const
+const char* CPluginModule::GetDescription() const
 {
 	return "";
 }

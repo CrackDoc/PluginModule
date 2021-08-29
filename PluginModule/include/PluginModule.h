@@ -13,7 +13,7 @@ typedef void (*FuncDestroyPlugin)();
 * @brief 插件信息[结构体]
 * @note  保存插件的信息
 */
-class  CPluginModule : public IPluginModule
+class  PluginModule_EXPORT CPluginModule : public IPluginModule
 {
 public:
 	CPluginModule();
@@ -26,13 +26,13 @@ public:
  * @param
  * @return
 */
-	virtual std::string GetName() const;
+	virtual const char* GetName() const;
 
-	virtual std::string GetCompany() const;
+	virtual const char* GetCompany() const;
 
-	virtual std::string GetVersion() const;
+	virtual const char* GetVersion() const;
 
-	virtual std::string GetDescription() const;
+	virtual const char* GetDescription() const;
 
 	virtual bool Initialise();
 
@@ -171,5 +171,5 @@ protected:
 	void* m_lstObserver;
 	//std::list<CPluginModuleObserver*> m_lstObserver;			//插件模块观察者容器
 };
-DECLARE_ACMODULE(Plugin, extern)
+DECLARE_ACMODULE(Plugin, PluginModule_EXPORT)
 #endif // PluginModule_h__

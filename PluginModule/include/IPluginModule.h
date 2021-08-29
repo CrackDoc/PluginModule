@@ -1,22 +1,23 @@
 #ifndef IPluginModule_h__
 #define IPluginModule_h__
-
-
-#include <string>
+#include "PluginModuleExport.h"
 
 class IPlugin;
 class CLibrary;
 
 // 定义一个结构体 PluginInfo 
-class CPluginInfo
+class PluginModule_EXPORT CPluginInfo
 {
 public:
 	CPluginInfo():
 		  m_pPlugin(nullptr)
 		, m_pLibrary(nullptr)
 	{
-		memset(m_strBelong, '\0', sizeof(char) * 128);
-		memset(m_strDuty, '\0', sizeof(char) * 128);
+		for (int i = 0; i < 128; ++i)
+		{
+			m_strBelong[i] = '\0';
+			m_strDuty[i] = '\0';
+		}
 	}
 
 	~CPluginInfo()
@@ -35,7 +36,7 @@ public:
 * @brief 插件模块观察者
 * @note  
 */
-class CPluginModuleObserver
+class PluginModule_EXPORT CPluginModuleObserver
 {
 public:
 	virtual ~CPluginModuleObserver(){}
@@ -44,7 +45,7 @@ public:
 
 	virtual bool OnPluginUnload(IPlugin* pPlugin, const char* strDuty) = 0;
 };
-class PluginInfoVisitor
+class PluginModule_EXPORT PluginInfoVisitor
 {
 public:
 	virtual ~PluginInfoVisitor(){}
@@ -59,7 +60,7 @@ public:
 	virtual void Visit(const char* strName,CPluginInfo *pluginInfo)  = 0;
 };
 
-class  IPluginModule
+class  PluginModule_EXPORT IPluginModule
 {
 public:
 	virtual ~IPluginModule(){}
@@ -71,13 +72,13 @@ public:
 	 * @param    
 	 * @return   
 	*/
-	virtual std::string GetName() const  = 0;
+	virtual const char* GetName() const  = 0;
 
-	virtual std::string GetCompany() const  = 0;
+	virtual const char* GetCompany() const  = 0;
 
-	virtual std::string GetVersion() const  = 0;
+	virtual const char* GetVersion() const  = 0;
 
-	virtual std::string GetDescription() const = 0;
+	virtual const char* GetDescription() const = 0;
 	
 	virtual bool Initialise() = 0;
 	
